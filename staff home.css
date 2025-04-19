@@ -1,0 +1,621 @@
+/* ========== Global Styles ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    color: #fff;
+    background: linear-gradient(135deg, #000000, #ff0000, #000000, #003566, #000000);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  /* ========== Header ========== */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    margin-bottom: 30px;
+    border-radius: 20px;
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .nav-links a {
+    color: #ccc;
+    margin-right: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover,
+  .nav-links a:focus {
+    color: #fff;
+    outline: none;
+  }
+  
+  /* ========== Main Content ========== */
+  .main-content {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  /* ========== Greeting ========== */
+  .greeting {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeSlideUp 1.4s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+  
+  @keyframes fadeSlideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* ========== Title Section ========== */
+  .title-section {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .title-section h1 {
+    font-size: 2.4rem;
+  }
+  
+  .title-section p {
+    color: #ccc;
+  }
+  
+  /* ========== Filters ========== */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  
+  .filters input,
+  .filters select {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: background 0.3s ease;
+  }
+  
+  .filters input:focus,
+  .filters select:focus {
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+  }
+  
+  .filters input::placeholder {
+    color: #aaa;
+  }
+  
+  /* ========== Cards Layout ========== */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 0 10px;
+  }
+  
+  /* ========== Card ========== */
+  .card {
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  
+  .card h2 {
+    font-size: 1.3rem;
+    margin-top: 10px;
+  }
+  
+  .presenter {
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+  
+  .details {
+    margin: 15px 0;
+    color: #bbb;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  /* ========== Action Buttons ========== */
+  .card .action-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  
+  .btn {
+    padding: 10px 18px;
+    min-width: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .btn:hover,
+  .btn:focus {
+    transform: scale(1.05);
+    background: linear-gradient(to right, rgba(128, 0, 0, 0.7), rgba(0, 0, 128, 0.7));
+    outline: none;
+  }
+  
+  .btn.enroll {
+    background: linear-gradient(to right, maroon, navy);
+  }
+  
+  .btn.enrolled {
+    background: linear-gradient(to right, #22c55e, #15803d);
+    box-shadow: 0 0 12px #22c55e;
+    animation: enrolledPop 0.4s ease;
+    cursor: default;
+  }
+  
+  /* ========== Summary Section ========== */
+  .card-main {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .card-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .summary {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    border-radius: 15px;
+    max-width: 250px;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .summary.active {
+    width: 250px;
+    opacity: 1;
+    padding: 10px 15px;
+  }
+  
+  .summary p {
+    font-size: 0.9rem;
+    color: #eee;
+    padding: 15px;
+    margin: 0;
+  }
+  
+  /* ========== Animations ========== */
+  @keyframes enrolledPop {
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(34, 197, 94, 0.7); }
+    50% { transform: scale(1.08); box-shadow: 0 0 20px rgba(34, 197, 94, 0.7); }
+    100% { transform: scale(1); box-shadow: 0 0 12px rgba(34, 197, 94, 0.7); }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1.05); box-shadow: 0 0 10px #33ccff; }
+    50%      { transform: scale(1.08); box-shadow: 0 0 20px #00ff99; }
+  }
+  
+  /* ========== Utilities ========== */
+  .hidden {
+    display: none !important;
+  }
+  
+  .enrolled-animation {
+    background-color: #32cd32;
+    color: white;
+    font-weight: bold;
+    animation: pulse 1s ease-in-out;
+  }
+  
+  /* ========== Responsive Design ========== */
+  @media (max-width: 768px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  
+    .card-main {
+      flex-direction: column;
+    }
+  
+    .summary {
+      max-width: 100%;
+      width: 100%;
+      opacity: 1;
+      padding: 12px 15px;
+      margin-top: 10px;
+    }
+  
+    .summary p {
+      font-size: 0.85rem;
+    }
+  
+    .action-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .btn {
+      width: 100%;
+      max-width: 300px;
+    }
+  
+    .filters {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .filters input,
+    .filters select {
+      width: 100%;
+    }
+  
+    .title-section h1 {
+      font-size: 1.8rem;
+    }
+  
+    .greeting {
+      font-size: 1.6rem;
+    }
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #ff0000, #cc0000);
+    color: white;
+  }
+
+  header {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  nav a {
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 40px 20px 20px;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: #fdd;
+  }
+
+  .filters {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 10px;
+  }
+
+  .filters input,
+  .filters select {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+
+  .webinar-card {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .webinar-card h2 {
+    margin-bottom: 10px;
+  }
+
+  .webinar-card p {
+    margin: 5px 0;
+  }
+
+  .webinar-card .details {
+    margin-top: 10px;
+  }
+
+  .actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .actions button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  .edit-btn {
+    background-color: #ffc107;
+    color: black;
+  }
+
+  .view-btn {
+    background-color: #17a2b8;
+  }
+
+  .cancel-btn {
+    background-color: #dc3545;
+  }
+
+  .more-btn {
+    background-color: #007bff;
+  }
+
+  .actions button:hover {
+    transform: scale(1.05);
+  }
+
+  .footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: #fff;
+    opacity: 0.7;
+  }
+  .live-btn {
+    background-color: #e83e8c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  
+  .live-btn:hover {
+    background-color: #c82368;
+  }
+/* Floating Stream Icon */
+#liveStreamIcon {
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #b5d67c;
+    color: white;
+    font-size: 24px;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+  }
+  #liveStreamIcon:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Live Stream Panel */
+  #liveStreamPanel {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    display: none;
+    z-index: 999;
+    backdrop-filter: blur(10px);
+  }
+  
+  .stream-header {
+    background: #222;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    border-bottom: 1px solid #444;
+  }
+  
+  .stream-body {
+    padding: 15px;
+  }
+  
+  .video-box {
+    background: #000;
+    height: 150px;
+    border: 2px solid #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    margin-bottom: 10px;
+  }
+  
+  .stream-controls button {
+    margin: 5px 5px 0 0;
+    padding: 8px 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .stream-controls .end-btn {
+    background-color: #e74c3c;
+  }
+  /* Live Stream Panel */
+  .create-dropdown {
+    position: relative;
+    display: inline-block;
+    margin: 20px;
+  }
+  
+  .create-btn {
+    background-color: #111;
+    color: white;
+    padding: 10px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .create-btn:hover {
+    background-color: #333;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1a1a1a;
+    min-width: 180px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 1;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+  
+  .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #333;
+  }
+  /*------ create glass effect----*/
+  /* Create Webinar Modal with Glass Effect */
+#webinarFormModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+}
+
+#webinarForm {
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Apply blur effect to the background */
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow to enhance the glass look */
+}
+
+#webinarForm input, #webinarForm textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.15); /* Slight transparency for inputs */
+  color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for input fields */
+}
+
+#webinarForm button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#webinarForm button[type="button"] {
+  background-color: #6c757d;
+}

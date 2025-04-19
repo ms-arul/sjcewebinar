@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Webinar Registration - Dark Glass UI</title>
+  <link rel="stylesheet" href="studenthome.css" />
+  <style>
+ body {
+    color: #fff;
+    background: linear-gradient(60deg, #000000, #ff0000, #000000, #003566, #000000);
+    background-size: 500% 500%;
+    animation: intenseGradient 15s ease infinite;
+  }
+  
+  @keyframes intenseGradient {
+    0%   { background-position: 0% 50%; }
+    25%  { background-position: 50% 100%; }
+    50%  { background-position: 100% 50%; }
+    75%  { background-position: 50% 0%; }
+    100% { background-position: 0% 50%; }
+  }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .nav-links a {
+      margin-left: 20px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .main-content {
+      padding: 20px;
+    }
+
+    .title-section h1 {
+      margin-bottom: 5px;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .filters input, .filters select {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card {
+      overflow: hidden;
+    }
+
+    .card-inner {
+      display: flex;
+      gap: 15px;
+      transition: all 0.4s ease;
+    }
+
+    .card-content {
+      flex: 1;
+      min-width: 0;
+      transition: flex 0.4s ease;
+    }
+
+    .card.show-summary .card-content {
+      flex: 0.7;
+    }
+
+    .summary {
+      width: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      padding: 0;
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card.show-summary .summary {
+      width: 250px;
+      opacity: 1;
+      padding: 15px;
+    }
+
+    .summary p {
+      font-size: 0.9rem;
+      color: #eee;
+      margin: 0;
+    }
+
+    .btn {
+      margin-top: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .btn.start {
+      background-color: #28a745;
+    }
+
+    .btn.enroll.enrolled-animation {
+      background-color: #4caf50;
+    }
+
+    .action-buttons {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <header class="glass header">
+    <div class="logo">SJCE Webinars</div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Events</a>
+      <a href="#">About</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <h2 class="greeting">Hello, Students 👋</h2>
+
+    <section class="title-section">
+      <h1>Enroll for Upcoming Webinars</h1>
+      <p>Learn, upskill, and stay ahead with live expert-led sessions</p>
+    </section>
+
+    <section class="filters glass">
+      <input type="text" placeholder="Search by Keyword" />
+      <select>
+        <option>Sort By</option>
+        <option>Date</option>
+        <option>Popularity</option>
+      </select>
+      <select>
+        <option>Technology</option>
+        <option>AI</option>
+        <option>Cloud</option>
+      </select>
+      <select>
+        <option>Vendor</option>
+        <option>Microsoft</option>
+        <option>Google</option>
+      </select>
+    </section>
+
+    <section class="cards">
+      <!-- CARD 1 -->
+      <div class="card glass">
+        <div class="card-inner">
+          <div class="card-content">
+            <p class="presenter">Presenter: Gavin Joes</p>
+            <h2>Full Stack Development</h2>
+            <div class="details">
+              <span>📅 08 Apr 2025 | 🕑 2:00 PM IST</span><br/>
+              <span>⏳ 2 Hours</span>
+            </div>
+            <p>👥 77 Enrolled</p>
+            <div class="action-buttons">
+              <button class="btn enroll">Enroll</button>
+              <button class="btn show-more">Show More ↓</button>
+              <button class="btn start" onclick="startClass()">Start Class</button>
+
+<script>
+  function startClass() {
+    window.location.href = "studentclass.html";
+  }
+</script>
+
+            </div>
+          </div>
+          <div class="summary">
+            <p>This session introduces core concepts of front-end and back-end development using modern JavaScript frameworks and APIs.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="card glass">
+        <div class="card-inner">
+          <div class="card-content">
+            <p class="presenter">Presenter: ARULPRAKASH</p>
+            <h2>UI AND UX</h2>
+            <div class="details">
+              <span>📅 10 Apr 2025 | 🕑 11:00 AM IST</span><br/>
+              <span>⏳ 1.5 Hours</span>
+            </div>
+            <p>👥 52 Enrolled</p>
+            <div class="action-buttons">
+              <button class="btn enroll">Enroll</button>
+              <button class="btn show-more">Show More ↓</button>
+              <button class="btn start" onclick="startClass()">Start Class</button>
+
+<script>
+  function startClass() {
+    window.location.href = "studentclass.html";
+  }
+</script>
+
+            </div>
+          </div>
+          <div class="summary">
+            <p>Explore the principles of effective user interfaces and experiences, including usability, wireframing, and design tools like Figma.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="card glass">
+        <div class="card-inner">
+          <div class="card-content">
+            <p class="presenter">Presenter: IRANEYAN</p>
+            <h2>Cloud Computing</h2>
+            <div class="details">
+              <span>📅 12 Apr 2025 | 🕑 4:00 PM IST</span><br/>
+              <span>⏳ 2 Hours</span>
+            </div>
+            <p>👥 65 Enrolled</p>
+            <div class="action-buttons">
+              <button class="btn enroll">Enroll</button>
+              <button class="btn show-more">Show More ↓</button>
+              <button class="btn start" onclick="startClass()">Start Class</button>
+
+<script>
+  function startClass() {
+    window.location.href = "studentclass.html";
+  }
+</script>
+
+            </div>
+          </div>
+          <div class="summary">
+            <p>Learn about cloud service models, deployment types, and hands-on examples using platforms like AWS, Azure, and Google Cloud.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Show More logic with sliding summary and shrinking content
+    document.querySelectorAll('.btn.show-more').forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.card');
+        card.classList.toggle('show-summary');
+
+        const isOpen = card.classList.contains('show-summary');
+        button.textContent = isOpen ? 'Show Less ↑' : 'Show More ↓';
+      });
+    });
+
+    // Enroll button interaction
+    document.querySelectorAll('.btn.enroll').forEach(button => {
+      button.addEventListener('click', () => {
+        button.classList.add('enrolled-animation');
+        button.innerHTML = '✅ Enrolled';
+        button.disabled = true;
+      });
+    });
+  </script>
+</body>
+</html>

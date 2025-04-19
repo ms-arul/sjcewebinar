@@ -1,0 +1,403 @@
+1. What is the difference between a compiler and an interpreter?
+
+A compiler translates the entire source code into machine code before execution, creating an executable file. An interpreter translates and executes the code line-by-line at runtime without producing an intermediary file.
+
+2. What is the purpose of object-oriented programming (OOP)?
+
+OOP is a programming paradigm that uses objects and classes to structure software in a way that promotes reusability, scalability, and maintainability by modeling real-world entities.
+
+3. What are the four pillars of OOP?
+
+The four pillars are Encapsulation, Abstraction, Inheritance, and Polymorphism.
+
+4. What is a variable in programming?
+
+A variable is a named storage location in memory that holds a value, which can be modified during the execution of a program.
+
+5. Explain the concept of a function in programming.
+
+A function is a block of code designed to perform a specific task. It can accept input, process it, and return a result.
+
+6. What is the difference between a class and an object in OOP?
+
+A class is a blueprint or template for creating objects. An object is an instance of a class with actual values.
+
+7. What is recursion in programming?
+
+Recursion is a programming technique where a function calls itself to solve smaller instances of the same problem.
+
+8. What is the difference between pass-by-value and pass-by-reference?
+
+Pass-by-value means passing a copy of the argument's value. Pass-by-reference means passing a reference to the original variable, allowing modifications to the actual value.
+
+9. What are pointers in programming languages like C and C++?
+
+Pointers are variables that store memory addresses of other variables, allowing direct manipulation of memory.
+
+10. What is memory management in programming?
+
+Memory management involves efficiently allocating, using, and deallocating memory to optimize performance and prevent memory leaks.
+
+11. What is the difference between a stack and a queue?
+
+A stack is a Last-In-First-Out (LIFO) data structure, while a queue is a First-In-First-Out (FIFO) data structure.
+
+12. What is the purpose of a constructor in OOP?
+
+A constructor is a special method used to initialize objects when they are created.
+
+13. What is an exception in programming?
+
+An exception is an event that disrupts the normal flow of program execution, often due to an error.
+
+14. What is the difference between an array and a linked list?
+
+An array is a collection of elements stored in contiguous memory locations, while a linked list is a collection of nodes where each node points to the next node in the sequence.
+
+15. Explain the concept of a hash table.
+
+A hash table is a data structure that maps keys to values using a hash function for efficient lookup and insertion.
+
+16. What is dynamic memory allocation?
+
+Dynamic memory allocation refers to the process of allocating memory during runtime, typically using functions like malloc() or new.
+
+17. What is the use of the 'this' keyword in OOP?
+
+The this keyword refers to the current instance of a class.
+
+18. What is polymorphism in OOP?
+
+Polymorphism allows objects of different classes to be treated as objects of a common superclass, often enabling method overriding and overloading.
+
+19. What is inheritance in OOP?
+
+Inheritance is a mechanism by which a class inherits properties and behaviors (methods) from another class.
+
+20. What is encapsulation in OOP?
+
+Encapsulation is the bundling of data and methods that operate on that data within a single unit (class), restricting direct access to some of an object's components.
+
+Data Structures:
+1. What are data structures?
+
+Data structures are ways to organize, store, and manipulate data efficiently.
+
+2. What is the difference between a singly linked list and a doubly linked list?
+
+A singly linked list has nodes with a reference to the next node, while a doubly linked list has nodes with references to both the next and previous nodes.
+
+3. What is a binary tree?
+
+A binary tree is a hierarchical data structure where each node has at most two children, referred to as the left and right children.
+
+4. What is a binary search tree (BST)?
+
+A BST is a binary tree where the left child is less than the parent, and the right child is greater than the parent.
+
+5. What is a balanced tree?
+
+A balanced tree is a tree structure where the heights of the left and right subtrees of any node differ by at most one.
+
+6. What is a graph in data structures?
+
+A graph is a collection of nodes (vertices) and edges (connections) between them, used to represent relationships.
+
+7. What is the difference between a tree and a graph?
+
+A tree is a hierarchical structure with no cycles, while a graph may contain cycles and doesn't necessarily have a hierarchy.
+
+8. What are the types of trees used in computing?
+
+Types include binary trees, binary search trees, AVL trees, red-black trees, heap trees, and B-trees.
+
+9. What is a heap data structure?
+
+A heap is a specialized tree-based data structure used to implement priority queues, where the parent node's value is either greater or smaller than its children's values (max-heap or min-heap).
+
+10. What is the purpose of a stack?
+
+A stack is used for Last-In-First-Out (LIFO) operations, such as function calls and undo operations.
+
+11. What is a queue used for?
+
+A queue is used for First-In-First-Out (FIFO) operations, such as scheduling tasks in operating systems or handling requests in a server.
+
+12. What is the difference between a stack and a queue?
+
+A stack uses LIFO ordering, while a queue uses FIFO ordering.
+
+13. What is a circular linked list?
+
+A circular linked list is a variation where the last node points back to the first node, forming a loop.
+
+14. What are the operations on a stack?
+
+Push (add an element), Pop (remove an element), Peek (view the top element), and isEmpty (check if the stack is empty).
+
+15. What are the operations on a queue?
+
+Enqueue (add an element), Dequeue (remove an element), Front (view the first element), and isEmpty (check if the queue is empty).
+
+16. What is a priority queue?
+
+A priority queue is a data structure where each element has a priority, and elements are dequeued based on their priority, rather than FIFO or LIFO.
+
+17. What is the time complexity of searching in an array?
+
+The time complexity is O(n) for an unsorted array, and O(log n) for a sorted array (binary search).
+
+18. What is the time complexity of searching in a linked list?
+
+The time complexity is O(n) for a singly or doubly linked list.
+
+19. What is a hash function?
+
+A hash function is a function that maps input data (keys) to a fixed-size string or number, used in hash tables.
+
+20. What is the significance of the load factor in a hash table?
+
+The load factor represents the ratio of the number of elements to the size of the hash table. A higher load factor can lead to collisions, while a lower load factor may waste space.
+
+Algorithms:
+1. What is an algorithm?
+
+An algorithm is a step-by-step procedure or set of rules for solving a problem or performing a task.
+
+2. What are the types of algorithms?
+
+Types include sorting algorithms, searching algorithms, graph algorithms, dynamic programming algorithms, greedy algorithms, and divide-and-conquer algorithms.
+
+3. What is a sorting algorithm? Name some examples.
+
+A sorting algorithm arranges data in a particular order. Examples: bubble sort, merge sort, quick sort, insertion sort, selection sort.
+
+4. What is the difference between merge sort and quicksort?
+
+Merge sort is a divide-and-conquer algorithm with O(n log n) complexity, while quick sort is also divide-and-conquer but is faster in practice (O(n log n) on average, O(n^2) worst-case).
+
+5. What is the time complexity of bubble sort?
+
+The time complexity of bubble sort is O(n^2).
+
+6. What is the time complexity of insertion sort?
+
+The time complexity of insertion sort is O(n^2) in the worst case.
+
+7. What is the time complexity of selection sort?
+
+The time complexity of selection sort is O(n^2).
+
+8. What is the time complexity of merge sort?
+
+The time complexity of merge sort is O(n log n).
+
+9. What is the time complexity of quicksort?
+
+The time complexity of quicksort is O(n log n) on average and O(n^2) in the worst case.
+
+10. What is a divide and conquer algorithm?
+
+A divide and conquer algorithm solves a problem by breaking it into smaller subproblems, solving them independently, and combining their results.
+
+11. What is a greedy algorithm?
+
+A greedy algorithm makes the locally optimal choice at each step, hoping to find a global optimum.
+
+12. What is dynamic programming?
+
+Dynamic programming is a method for solving problems by breaking them into simpler subproblems and storing the results of subproblems to avoid redundant computations.
+
+13. What is the difference between dynamic programming and divide-and-conquer?
+
+Dynamic programming stores results of subproblems (overlapping subproblems), while divide-and-conquer solves independent subproblems and combines their results.
+
+14. What is the traveling salesman problem?
+
+The traveling salesman problem is an optimization problem where the goal is to find the shortest possible route that visits a set of cities and returns to the origin city.
+
+15. What is Dijkstra’s algorithm?
+
+Dijkstra’s algorithm finds the shortest path between nodes in a graph, used for routing and as a subroutine in other graph algorithms.
+
+16. What is the Floyd-Warshall algorithm?
+
+The Floyd-Warshall algorithm computes the shortest paths between all pairs of nodes in a graph.
+
+17. What is the time complexity of binary search?
+
+The time complexity of binary search is O(log n).
+
+18. What is a brute-force algorithm?
+
+A brute-force algorithm solves a problem by trying all possible solutions until it finds the correct one.
+
+19. What is the difference between depth-first search (DFS) and breadth-first search (BFS)?
+
+DFS explores as far down a branch as possible before backtracking, while BFS explores all neighboring nodes at the present depth before moving on to nodes at the next depth level.
+
+20. What is the A algorithm?*
+
+The A* algorithm is a pathfinding algorithm that uses both the actual cost to reach a node and an estimate of the cost to reach the goal (heuristic) to determine the shortest path.
+
+Operating Systems:
+1. What is an operating system?
+
+An operating system is system software that manages hardware and software resources and provides services for computer programs.
+
+2. What are the functions of an operating system?
+
+Functions include process management, memory management, file system management, device management, and security management.
+
+3. What is a kernel?
+
+The kernel is the core part of the operating system that manages resources and communication between hardware and software.
+
+4. What is a process in an operating system?
+
+A process is an instance of a program in execution.
+
+5. What is a thread in an operating system?
+
+A thread is the smallest unit of execution within a process.
+
+6. What is a system call?
+
+A system call is an interface between a running program and the operating system, allowing programs to request services from the kernel.
+
+7. What is virtual memory?
+
+Virtual memory allows programs to use more memory than is physically available by swapping data between RAM and disk storage.
+
+8. What is paging in an operating system?
+
+Paging is a memory management scheme that divides memory into fixed-size blocks, called pages, to optimize memory usage and avoid fragmentation.
+
+9. What is segmentation in an operating system?
+
+Segmentation divides memory into variable-sized segments, such as code, data, and stack segments.
+
+10. What is deadlock in an operating system?
+
+Deadlock occurs when two or more processes are blocked forever, waiting for each other to release resources.
+
+11. What is a semaphore in OS?
+
+A semaphore is a synchronization primitive used to manage access to shared resources and prevent race conditions.
+
+12. What is the difference between a process and a thread?
+
+A process is an independent program with its own memory space, while a thread is a smaller unit of execution within a process that shares the same memory.
+
+13. What is multitasking?
+
+Multitasking is the ability of an operating system to execute multiple tasks or processes simultaneously.
+
+14. What is CPU scheduling?
+
+CPU scheduling determines which process or thread the CPU should execute next based on priority or other criteria.
+
+15. What is round-robin scheduling?
+
+Round-robin scheduling is a CPU scheduling algorithm where each process is assigned a fixed time slice (quantum) and executed in circular order.
+
+16. What is priority scheduling in an operating system?
+
+Priority scheduling is a CPU scheduling algorithm where processes are assigned priorities, and the CPU executes the process with the highest priority.
+
+17. What is the purpose of a file system?
+
+A file system manages how data is stored, accessed, and organized on storage devices.
+
+18. What is file allocation in an operating system?
+
+File allocation determines how files are stored on disk, either contiguously, linked, or indexed.
+
+19. What is memory allocation in an operating system?
+
+Memory allocation is the process of assigning memory space to programs or processes.
+
+20. What are the different types of file systems?
+
+Types of file systems include FAT, NTFS, ext4, **HFS+, and APFS.
+
+Databases:
+1. What is a database?
+
+A database is an organized collection of data that can be easily accessed, managed, and updated.
+
+2. What is SQL (Structured Query Language)?
+
+SQL is a programming language used to manage and manipulate relational databases.
+
+3. What is a relational database?
+
+A relational database organizes data into tables that are related to each other via foreign keys.
+
+4. What is a NoSQL database?
+
+A NoSQL database is a non-relational database designed for large-scale, distributed data storage, offering flexible schemas (e.g., MongoDB, Cassandra).
+
+5. What is normalization in databases?
+
+Normalization is the process of organizing data to reduce redundancy and improve data integrity.
+
+6. What are the types of joins in SQL?
+
+Types include INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN.
+
+7. What is a primary key in a database?
+
+A primary key uniquely identifies each record in a table.
+
+8. What is a foreign key in a database?
+
+A foreign key is a field in a table that links to the primary key of another table.
+
+9. What is indexing in a database?
+
+Indexing improves the speed of data retrieval operations by creating a data structure that allows faster searching.
+
+10. What is ACID in databases?
+
+ACID stands for Atomicity, Consistency, Isolation, and Durability, which are properties that guarantee reliable transaction processing.
+
+11. What are the different types of indexes?
+
+Types include B-tree indexes, Hash indexes, Bitmap indexes, and Full-text indexes.
+
+12. What is a database schema?
+
+A database schema is the structure that defines the organization of data within a database, including tables, views, and relationships.
+
+13. What is a view in SQL?
+
+A view is a virtual table based on the result of a query, used to simplify complex queries.
+
+14. What is a stored procedure in SQL?
+
+A stored procedure is a set of precompiled SQL statements that can be executed on demand.
+
+15. What is the difference between SQL and NoSQL?
+
+SQL is used for structured data in relational databases, while NoSQL is used for unstructured or semi-structured data, offering scalability and flexibility.
+
+16. What is a transaction in database management?
+
+A transaction is a unit of work that is performed on a database, which must be completed entirely or not at all (due to ACID properties).
+
+17. What is a data model?
+
+A data model defines how data is structured and related in a database.
+
+18. What is a relational schema?
+
+A relational schema defines the structure of a relational database, including tables, columns, and relationships.
+
+19. What is a trigger in SQL?
+
+A trigger is an automatic action that occurs in response to certain events, such as insert, update, or delete operations.
+
+20. What is data redundancy?
+
+Data redundancy occurs when the same data is stored in multiple places, which can lead to inefficiency and inconsistency.

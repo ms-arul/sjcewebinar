@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome - Webinar Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+  <div class="header">
+    St. Joseph College of Engineering
+    <span>Webinar Participation Portal</span>
+  </div>
+
+  <!-- Role Selection -->
+  <main class="welcome-container" id="roleSelection">
+    <h1>Hello There!</h1>
+    <p>Please select your role to continue with registration:</p>
+    <div class="role-buttons">
+      <a href="#" onclick="showForm('student')">I'm a Student</a>
+      <a href="#" onclick="showForm('staff')">I'm a Staff</a>
+    </div>
+  </main>
+
+  <!-- Sign In Form -->
+  <main class="form-container hidden" id="signForm">
+    <div class="back-arrow" onclick="goBack()">&#8592;</div>
+    <h2 id="formTitle">Sign In</h2>
+
+    <p id="registerLink" class="hidden">
+      Not registered? <a href="./web.html">Register newly</a>
+    </p>
+    <p id="staffRegisterLink" class="hidden">
+      Not registered? <a href="./staffreg.html">Register newly</a>
+    </p>
+
+    <form id="loginForm">
+      <input type="email" placeholder="Email Address" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Proceed</button>
+    </form>
+  </main>
+
+  <!-- Optional: Student Registration Form -->
+  <main class="form-container hidden" id="studentRegisterForm">
+    <div class="back-arrow" onclick="showForm('student')">&#8592;</div>
+    <h2>Student Registration</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="password" placeholder="Create Password" required>
+      <button type="submit">Register</button>
+    </form>
+  </main>
+
+  <!-- Script -->
+  <script>
+    let currentRole = '';
+
+    function showForm(role) {
+      currentRole = role;
+      localStorage.setItem("selectedRole", role);
+
+      document.getElementById("roleSelection").classList.add("hidden");
+      document.getElementById("signForm").classList.remove("hidden");
+      document.getElementById("signForm").scrollIntoView({ behavior: 'smooth' });
+
+      const isStudent = role === 'student';
+      document.getElementById("formTitle").innerText = isStudent ? 'Student Sign In' : 'Staff Sign In';
+      document.getElementById("registerLink").classList.toggle("hidden", !isStudent);
+      document.getElementById("staffRegisterLink").classList.toggle("hidden", isStudent);
+    }
+
+    function goBack() {
+      currentRole = '';
+      localStorage.removeItem("selectedRole");
+
+      document.getElementById("signForm").classList.add("hidden");
+      document.getElementById("roleSelection").classList.remove("hidden");
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      let role = currentRole || localStorage.getItem("selectedRole");
+
+      if (!role) {
+        alert("Please select your role first.");
+        return;
+      }
+
+      // Simulate login success and redirect for GitHub Pages
+      if (role === 'student') {
+        window.location.href = "./studenthome.html";
+      } else if (role === 'staff') {
+        window.location.href = "./staff home.html";
+      }
+    });
+  </script>
+</body>
+</html>

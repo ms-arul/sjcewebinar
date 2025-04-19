@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <meta charset="UTF-8">
+  <title>SJCE Virtual Classroom</title>
+  <style>
+    /* === BACKGROUND STARS & GRADIENT === */
+    body {
+      margin: 0;
+      padding: 0;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      background: linear-gradient(-45deg, #930000, #1a1a2e, #001e71, #87006a);
+      background-size: 400% 400%;
+      animation: gradientBG 20s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      text-align: center;
+      font-size: 2em;
+      letter-spacing: 2px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      z-index: 2;
+    }
+
+    .main-content {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 2rem;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 1200px;
+      height: calc(100vh - 160px);
+      flex-wrap: wrap;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .video-section, .sidebar {
+      flex: 1 1 45%;
+      min-width: 300px;
+    }
+
+    .video-section iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .sidebar {
+      background: rgba(255, 255, 255, 0.07);
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .tab-buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 1rem;
+    }
+
+    .tab-button {
+      padding: 10px 20px;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .tab-button:hover, .tab-button.active {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .chat-box {
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      border-radius: 10px;
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+    }
+
+    .chat-box p { margin: 0.5rem 0; }
+
+    .emoji-picker {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+    .chat-input {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+    }
+
+    .chat-input button {
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: none;
+      background: #00bfff;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .attendance-tracker {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 15px;
+      border-radius: 15px;
+      color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      z-index: 999;
+      max-width: 250px;
+    }
+
+    .attendance-tracker h4 {
+      margin-top: 0;
+    }
+    #chatbotBox {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.user-message {
+  color: rgb(208, 255, 0); /* User messages in blue */
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: right; /* Align user messages to the right */
+}
+
+.bot-message {
+  color: rgb(255, 255, 255); /* Bot messages in green */
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: left; /* Align bot messages to the left */
+}
+
+    .attendance-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 290px;
+      background: #00bfff;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      border: none;
+      z-index: 999;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .attendance-toggle {
+        right: 20px;
+        bottom: 90px;
+      }
+
+      .attendance-tracker {
+        bottom: 20px;
+        right: 20px;
+      }
+
+      .calculator {
+        margin-top: 20px;
+      }
+    }
+<style>
+  .tab-button {
+  background-color: maroon;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tab-button:hover {
+  background-color: rgb(139, 0, 79);
+}
+
+
+.calculator {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.display {
+  background: #111;
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-x: auto;
+  scrollbar-width: thin; /* For Firefox */
+}
+
+.display::-webkit-scrollbar {
+  height: 6px;
+}
+
+.display::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+#expression, #result {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+    .calculator {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+.display {
+  background: #111;
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  word-wrap: break-word;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 buttons per row */
+  gap: 10px;
+}
+
+.buttons button {
+  padding: 3px 0;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: white;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+button.clear {
+  background-color: #e74c3c;
+}
+
+button.equal {
+  background-color: #27ae60;
+  width: 100%;
+  max-width: 450px;
+  color: white;
+}
+
+button.equal:hover {
+  background-color: #2ecc71;
+}
+
+</style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <header>SJCE Virtual Classroom</header>
+
+  <div class="main-content">
+    <div class="video-section">
+      <iframe src="https://meet.jit.si/your-classroom-name" allow="camera; microphone; fullscreen; display-capture"></iframe>
+    </div>
+
+    <div class="sidebar">
+      <div class="tab-buttons">
+        <button class="tab-button" onclick="showTab('calculator')">CALCULATOR</button>
+        <button class="tab-button" onclick="showTab('chatbot')">CHATBOT</button>
+      </div>
+
+      
+
+      <div id="calculator" class="tab-content">
+        <div class="calculator">
+          <!-- Display -->
+          <div class="display">
+            <div id="expression" class="expression-display"></div>
+            <div id="result" class="result-display"></div>
+          </div>
+          
+      
+          <!-- Buttons Grid -->
+          <div class="buttons">
+<!-- Row 1 -->
+<button class="memory" onclick="memoryStore()">MS</button>
+<button class="memory" onclick="memoryRecall()">MR</button>
+<button class="memory" onclick="memoryClear()">MC</button>
+<button onclick="clearDisplay()" class="clear">AC</button>
+<button onclick="appendCalc('/')">÷</button>
+
+
+<!-- Row 2 -->
+<button onclick="appendCalc('7')">7</button>
+<button onclick="appendCalc('8')">8</button>
+<button onclick="appendCalc('9')">9</button>
+<button onclick="appendCalc('Math.sin(')" title="Sine">sin</button>
+<button onclick="appendCalc('*')">×</button>
+
+<!-- Row 3 -->
+<button onclick="appendCalc('4')">4</button>
+<button onclick="appendCalc('5')">5</button>
+<button onclick="appendCalc('6')">6</button>
+<button onclick="appendCalc('Math.cos(')" title="Cosine">cos</button>
+<button onclick="appendCalc('-')">−</button>
+
+
+
+<!-- Row 4 -->
+<button onclick="appendCalc('1')">1</button>
+<button onclick="appendCalc('2')">2</button>
+<button onclick="appendCalc('3')">3</button>
+<button onclick="appendCalc('Math.tan(')" title="Tangent">tan</button>
+<button onclick="appendCalc('+')">+</button>
+
+<button onclick="appendCalc('.')">.</button>
+<button onclick="appendCalc('0')">0</button>
+
+<button onclick="calculateResult()" class="equal">=</button>
+
+
+      
+            <!-- Scientific Functions -->
+            
+            
+            
+            <button onclick="appendCalc('sqrt(')" title="Square Root">√</button>
+      
+            <button onclick="appendCalc('Math.log10(')" title="Log base 10">log</button>
+            <button onclick="appendCalc('Math.log(')" title="Natural Logarithm">ln</button>
+            <button onclick="appendCalc('pow(')" title="Power">^</button>
+            <button onclick="appendCalc('Math.abs(')" title="Absolute Value">abs</button>
+      
+            <button onclick="appendCalc('Math.PI')" title="Pi">π</button>
+            <button onclick="appendCalc('Math.E')" title="Euler's Number">e</button>
+            <button onclick="appendCalc('%')" title="Modulus">mod</button>
+            <button onclick="appendCalc('1/')" title="Reciprocal">1/x</button>
+      
+            <!-- Optional: Custom button for factorial, assuming implementation -->
+            <button onclick="appendCalc('Math.factorial(')" title="Factorial">!</button>
+            <button onclick="appendCalc('(')">(</button>
+            <button onclick="appendCalc(')')">)</button>
+            
+
+      
+          </div>
+        </div>
+      </div>
+      
+
+      <div id="chatbot" class="tab-content">
+        <div class="emoji-picker">
+          <body>
+            <span onclick="sendEmoji('hi')">👋🤖 hii bro</span>
+          </body>
+         
+        </div>
+        <div class="chat-box" id="chatbotBox"></div>
+        <div class="chat-input">
+          <input type="text" id="chatbotInput" placeholder="Ask a question..." aria-label="Chatbot Input">
+          <button onclick="sendChatbotMessage()">Ask</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Add chatbot functionality
+    function getBotReply(input) {
+      const msg = input.toLowerCase();
+      if (msg.includes("hello") || msg.includes("hi")) {
+        return "Hey there! 👋 How can I help you with your studies today?";
+      } else if (msg.includes("study tips")) {
+        return "Here are a few study tips:\n1. Plan your study schedule.\n2. Stay organized and set goals.\n3. Take regular breaks.\n4. Test yourself with practice questions.\n5. Teach someone else what you’ve learned!";
+      } else if (msg.includes("exam")) {
+        return "For exam preparation:\n1. Start early and revise regularly.\n2. Practice with past papers.\n3. Get enough sleep before the exam.\n4. Stay calm and manage time effectively during the exam.";
+      } else if (msg.includes("algebra")) {
+        return "Algebra is a branch of mathematics that deals with symbols and the rules for manipulating these symbols. It involves solving equations where the unknowns are represented by letters.";
+      } else if (msg.includes("photosynthesis")) {
+        return "Photosynthesis is the process by which plants, algae, and some bacteria convert light energy, usually from the sun, into chemical energy in the form of glucose (sugar), which they use for food.";
+      } else if (msg.includes("newton")) {
+        return "Newton’s Laws of Motion:\n1. An object in motion stays in motion unless acted upon by an external force.\n2. Force equals mass times acceleration (F = ma).\n3. For every action, there is an equal and opposite reaction.";
+      }
+     else if (msg.includes("purpose of object-oriented programming") || msg.includes("purpose of oop")) {
+  return "OOP is a programming paradigm that uses objects and classes to structure software in a way that promotes reusability, scalability, and maintainability by modeling real-world entities.";
+} else if (msg.includes("four pillars of oop")) {
+  return "The four pillars of OOP are: 1. Encapsulation, 2. Abstraction, 3. Inheritance, 4. Polymorphism.";
+} else if (msg.includes("variable")) {
+  return "A variable is a named storage location in memory that holds a value, which can be modified during the execution of a program.";
+} else if (msg.includes("function")) {
+  return "A function is a block of code designed to perform a specific task. It can accept input, process it, and return a result.";
+} else if (msg.includes("class")) {
+  return "A class is a blueprint or template for creating objects.";
+}else if (msg.includes("object")) {
+  return " An object is an instance of a class with actual values.";
+} else if (msg.includes("recursion")) {
+  return "Recursion is a programming technique where a function calls itself to solve smaller instances of the same problem.";
+} else if (msg.includes("pass by value") || msg.includes("pass by reference")) {
+  return "Pass-by-value means passing a copy of the argument's value. Pass-by-reference means passing a reference to the original variable, allowing modifications to the actual value.";
+} else if (msg.includes("pointers in c") || msg.includes("pointers in c++")) {
+  return "Pointers are variables that store memory addresses of other variables, allowing direct manipulation of memory.";
+} else if (msg.includes("memory management in programming")) {
+  return "Memory management involves efficiently allocating, using, and deallocating memory to optimize performance and prevent memory leaks.";
+}
+
+// Data Structures
+else if (msg.includes("array")) {
+  return "An array is a linear data structure that stores elements of the same type in contiguous memory locations.";
+} else if (msg.includes("stack")) {
+  return "A stack is a LIFO (Last-In-First-Out) structure.";
+}else if (msg.includes("queue")) {
+  return " while a queue is a FIFO (First-In-First-Out) structure.";
+}  else if (msg.includes("linked list")) {
+  return "A linked list is a linear data structure where each element points to the next, allowing efficient insertion and deletion.";
+} else if (msg.includes("binary tree")) {
+  return "A binary tree is a hierarchical data structure where each node has at most two children: left and right.";
+} else if (msg.includes("hashing in data structures")) {
+  return "Hashing is a technique used to map data to a fixed-size value (hash code), often used in hash tables for fast lookup.";
+} else if (msg.includes("graph in data structures")) {
+  return "A graph is a collection of nodes (vertices) and edges connecting pairs of nodes, used to represent networks or relationships.";
+
+// Algorithms
+} else if (msg.includes("bubble sort")) {
+  return "Bubble Sort repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order.";
+} else if (msg.includes("binary search")) {
+  return "Binary Search is an efficient algorithm for finding an item in a sorted list by repeatedly dividing the search interval in half.";
+} else if (msg.includes("big o")) {
+  return "Big O notation describes the time or space complexity of an algorithm in terms of the input size, helping to evaluate performance.";
+} else if (msg.includes("greedy algorithm")) {
+  return "A greedy algorithm builds up a solution piece by piece, always choosing the next piece that offers the most immediate benefit.";
+} else if (msg.includes("divide and conquer")) {
+  return "Divide and Conquer is a strategy that breaks a problem into smaller sub-problems, solves them independently, and combines the results.";
+
+// Operating Systems
+} else if (msg.includes("process")) {
+  return "A process is an independent program in execution.";
+}else if (msg.includes("thread")) {
+  return " A thread is the smallest unit of a process that can run concurrently.";
+} else if (msg.includes("scheduling in operating systems")) {
+  return "CPU scheduling determines which process gets the CPU next, using algorithms like FCFS, SJF, Round Robin, etc.";
+} else if (msg.includes("deadlock")) {
+  return "Deadlock is a state where two or more processes are waiting for each other to release resources, resulting in a standstill.";
+} else if (msg.includes("paging and segmentation")) {
+  return "Paging divides memory into fixed-size pages.";
+}else if (msg.includes("segmentation")) {
+  return "while segmentation divides memory into variable-sized segments based on logical divisions.";
+} else if (msg.includes("file system")) {
+  return "A file system is the method an operating system uses to store, organize, and manage files on a storage device.";
+
+// DBMS
+} else if (msg.includes("dbms")) {
+  return "A DBMS (Database Management System) is software that manages databases, enabling storage, retrieval, and management of data efficiently.";
+} else if (msg.includes("sql")) {
+  return "SQL databases are relational and use structured query language.";
+} else if (msg.includes("nosql")) {
+  return "NoSQL databases are non-relational and handle unstructured data like documents or key-value pairs.";
+} else if (msg.includes("normalization")) {
+  return "Normalization is the process of organizing data to reduce redundancy and improve data integrity.";
+} else if (msg.includes("acid properties")) {
+  return "ACID stands for Atomicity, Consistency, Isolation, and Durability—key properties that ensure reliable database transactions.";
+} else if (msg.includes("er model")) {
+  return "An ER (Entity-Relationship) model represents data using entities, attributes, and relationships to visually describe the database structure.";
+
+// Software Engineering
+} else if (msg.includes("software development life cycle") || msg.includes("sdlc")) {
+  return "SDLC is the process of planning, creating, testing, and deploying software. Phases include requirement analysis, design, implementation, testing, deployment, and maintenance.";
+} else if (msg.includes("agile methodology")) {
+  return "Agile is an iterative and incremental software development methodology that emphasizes flexibility, collaboration, and customer feedback.";
+} else if (msg.includes("waterfall model")) {
+  return "The Waterfall Model is a linear and sequential approach to software development where each phase must be completed before the next begins.";
+} else if (msg.includes("testing in software engineering")) {
+  return "Software testing involves checking the software for bugs or issues to ensure it behaves as expected and meets requirements.";
+} else if (msg.includes("requirement gathering")) {
+  return "Requirement gathering is the process of collecting the functional and non-functional needs of stakeholders for a software project.";
+
+// Web Development
+} else if (msg.includes("html")) {
+  return "HTML is used to structure web content";
+}else if (msg.includes("css")) {
+  return "CSS is used to style and layout the web pages.";
+} else if (msg.includes("javascript")) {
+  return "JavaScript is a programming language used to make web pages interactive and dynamic.";
+} else if (msg.includes("frontend")) {
+  return "Frontend refers to the client-side interface of a website";
+}  else if (msg.includes("backend")) {
+  return " while backend refers to server-side logic, databases, and APIs.";
+} else if (msg.includes("responsive web design")) {
+  return "Responsive web design ensures that web pages render well on various devices and screen sizes using flexible layouts and media queries.";
+} else if (msg.includes("api")) {
+  return "An API (Application Programming Interface) is a set of rules that allow different software systems to communicate with each other.";
+
+// Networking
+} else if (msg.includes("computer network")) {
+  return "A computer network is a system of interconnected devices that can share resources and information.";
+} else if (msg.includes("osi model")) {
+  return "The OSI model has seven layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application, each responsible for different networking functions.";
+} else if (msg.includes("ip address")) {
+  return "An IP address is a unique identifier assigned to a device on a network for communication.";
+} else if (msg.includes("difference between tcp and udp")) {
+  return "TCP is connection-oriented, reliable, and slower. UDP is connectionless, faster, but doesn't guarantee delivery.";
+} else if (msg.includes("dns")) {
+  return "DNS (Domain Name System) translates human-friendly domain names (like example.com) into IP addresses that computers use.";
+}
+else if (msg.includes("dijkstra")) {
+  return "Dijkstra's Algorithm is a famous algorithm used for finding the shortest paths between nodes in a graph. It was proposed by Edsger Dijkstra in 1956 and is widely used in various applications, such as routing and network analysis. ";
+}
+else if (msg.includes("binary Search Tree")) {
+  return "A Binary Search Tree (BST) is a data structure that facilitates fast lookup, insertion, and deletion of elements. It is a type of binary tree where each node has at most two children, and the nodes are arranged in a specific order to make searching efficient.";
+}
+else if (msg.includes("oop principle")) {
+  return "Encapsulation,Abstraction,Polymorphism,Inheritance";
+}
+ else {
+        return "I didn’t quite get that. Could you please ask something related to your studies?";
+      }
+    }
+    function sendChatbotMessage() {
+  const inputField = document.getElementById('chatbotInput');
+  const userMessage = inputField.value;
+  if (userMessage.trim() === "") return;
+
+  const chatbotBox = document.getElementById('chatbotBox');
+  
+  // Create user message element
+  const userMsgElement = document.createElement('p');
+  userMsgElement.textContent = "🙂: " + userMessage;
+  userMsgElement.classList.add('user-message'); // Add class for styling
+  chatbotBox.appendChild(userMsgElement);
+
+  // Get bot's reply and create element
+  const botReply = getBotReply(userMessage);
+  const botMsgElement = document.createElement('p');
+  botMsgElement.textContent = "🤖: " + botReply;
+  botMsgElement.classList.add('bot-message'); // Add class for styling
+  chatbotBox.appendChild(botMsgElement);
+
+  inputField.value = ""; // Clear input field
+  chatbotBox.scrollTop = chatbotBox.scrollHeight; // Auto scroll to the bottom
+}
+
+    function showTab(tabName) {
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabButtons.forEach(button => {
+        button.classList.remove('active');
+      });
+
+      tabContents.forEach(content => {
+        content.classList.remove('active');
+      });
+
+      document.querySelector(`.tab-button[onclick="showTab('${tabName}')"]`).classList.add('active');
+      document.getElementById(tabName).classList.add('active');
+    }
+
+    // Calculator functions
+    let expression = '';
+    let result = '';
+
+    function appendCalc(value) {
+      expression += value;
+      document.getElementById('expression').textContent = expression;
+    }
+
+    function clearDisplay() {
+      expression = '';
+      result = '';
+      document.getElementById('expression').textContent = expression;
+      document.getElementById('result').textContent = '';
+    }
+
+    function calculateResult() {
+      try {
+        result = eval(expression);
+        document.getElementById('result').textContent = 'Result: ' + result;
+      } catch (e) {
+        document.getElementById('result').textContent = 'Error';
+      }
+    }
+
+    function memoryStore() {
+      localStorage.setItem('calcMemory', expression);
+    }
+
+    function memoryRecall() {
+      expression = localStorage.getItem('calcMemory') || '';
+      document.getElementById('expression').textContent = expression;
+    }
+
+    function memoryClear() {
+      localStorage.removeItem('calcMemory');
+    }
+  </script>
+  <script>
+    let expression = '';
+    let result = '';
+  
+    // Append input and auto-close parentheses for functions
+    function appendCalc(value) {
+      if (value.includes('Math.') || value === 'sqrt(' || value === 'pow(') {
+        expression += value + ')'; // Auto-close parentheses for math functions
+      } else if (value === '1/') {
+        expression += '(1/'; // Wrap in parentheses for reciprocal
+      } else {
+        expression += value;
+      }
+      document.getElementById('expression').textContent = expression;
+    }
+  
+    function clearDisplay() {
+      expression = '';
+      result = '';
+      document.getElementById('expression').textContent = '';
+      document.getElementById('result').textContent = '';
+    }
+  
+    // Factorial implementation
+    function factorial(n) {
+      if (n < 0) return NaN;
+      if (n === 0 || n === 1) return 1;
+      return n * factorial(n - 1);
+    }
+  
+    function calculateResult() {
+      try {
+        let safeExpression = expression
+          .replace(/pow\(/g, 'Math.pow(')
+          .replace(/Math\.factorial\((\d+)\)/g, (_, n) => factorial(parseInt(n)))
+          .replace(/sqrt\(/g, 'Math.sqrt('); // Optional: convert sqrt to Math.sqrt
+  
+        result = eval(safeExpression);
+        document.getElementById('result').textContent = 'Result: ' + result;
+      } catch (e) {
+        document.getElementById('result').textContent = 'Error';
+      }
+    }
+  
+    // Memory functions
+    function memoryStore() {
+      localStorage.setItem('calcMemory', expression);
+    }
+  
+    function memoryRecall() {
+      expression = localStorage.getItem('calcMemory') || '';
+      document.getElementById('expression').textContent = expression;
+    }
+  
+    function memoryClear() {
+      localStorage.removeItem('calcMemory');
+    }
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,192 @@
+body {
+  background: url('a1.jpg') no-repeat center center/cover;
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  flex-direction: column;
+  backdrop-filter: blur(6px);
+  padding: 50px 20px;
+  box-sizing: border-box;
+}
+
+.header {
+  text-align: center;
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.header span {
+  display: block;
+  font-size: 18px;
+  font-weight: normal;
+  margin-top: 5px;
+  color: #f0f0f0;
+}
+
+.welcome-container,
+.form-container {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 50px 30px;
+  border-radius: 22px;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  animation: fadeInForm 0.9s ease-in-out;
+  margin: 20px auto;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.welcome-container h1,
+.form-container h2 {
+  font-size: 34px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.welcome-container p,
+.form-container p {
+  color: #ddd;
+  font-size: 17px;
+  margin-bottom: 30px;
+}
+
+.role-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.role-buttons a {
+  padding: 14px 24px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(90deg, #22C1C3 0%, #7A2099 100%);
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  min-width: 130px;
+}
+
+.role-buttons a:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: linear-gradient(90deg, #1DA1A3 0%, #6B1A87 100%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+form input {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 16px;
+  outline: none;
+  transition: background 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form input:focus {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+form input::placeholder {
+  color: #ccc;
+}
+
+form button {
+  padding: 14px;
+  background: linear-gradient(to right, #2dd6c1, #7a1f9c);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+form button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.back-arrow {
+  font-size: 24px;
+  color: white;
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-align: left;
+}
+
+#registerLink span {
+  color: #00eaff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes fadeInForm {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .welcome-container,
+  .form-container {
+    padding: 30px 20px;
+    margin: 15px auto;
+  }
+
+  .header {
+    font-size: 28px;
+  }
+
+  .welcome-container h1,
+  .form-container h2 {
+    font-size: 26px;
+  }
+
+  .role-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .role-buttons a {
+    width: 100%;
+    padding: 14px 0;
+  }
+
+  form button {
+    font-size: 15px;
+  }
+
+  .back-arrow {
+    font-size: 20px;
+  }
+}

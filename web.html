@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Webinar Registration | SJCE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background: url('a1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      overflow: auto;
+    }
+
+    .split-left, .split-right {
+      width: 50%;
+      padding: 40px;
+    }
+
+    .split-left {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .split-left h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .split-left p {
+      font-size: 18px;
+      color: #ccc;
+    }
+
+    .split-right {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      overflow-y: auto;
+    }
+
+    .header {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .signin-link {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .signin-link a {
+      color: #4eaaff;
+      text-decoration: none;
+    }
+
+    .signin-link a:hover {
+      text-decoration: underline;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      outline: none;
+    }
+
+    .input-group textarea {
+      resize: vertical;
+    }
+
+    .button-group {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .button-group button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4eaaff;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .button-group .reset-btn {
+      background-color: #ff4e4e;
+    }
+
+    .button-group button:hover {
+      background-color: #318ce7;
+    }
+
+    #strength-bar {
+      height: 8px;
+      width: 100%;
+      margin-top: 6px;
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    #strength-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .split-left, .split-right {
+        width: 100%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left Side: Welcome Info -->
+  <div class="split-left">
+    <h1>Welcome to SJCE Webinar</h1>
+    <p>Register now to participate in exciting tech sessions and enhance your skills in various domains!</p>
+  </div>
+
+  <!-- Right Side: Registration Form -->
+  <div class="split-right">
+    <div class="header">Webinar Registration Form</div>
+    <form id="registration-form">
+      <p class="signin-link">
+        Already have an ID? <a href="welcome.html">Sign In here</a>
+      </p>
+
+      <div class="input-group">
+        <label for="roll-number">Roll Number</label>
+        <input type="text" id="roll-number" name="roll-number" required placeholder="Enter your roll number"/>
+      </div>
+
+      <div class="input-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required placeholder="Enter your full name"/>
+      </div>
+
+      <div class="input-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" required/>
+      </div>
+
+      <div class="input-group">
+        <label for="year">Year of Study</label>
+        <select id="year" name="year" required>
+          <option value="">Select Year</option>
+          <option value="1">First Year</option>
+          <option value="2">Second Year</option>
+          <option value="3">Third Year</option>
+          <option value="4">Fourth Year</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="domain">Domain</label>
+        <select id="domain" name="domain" required onchange="handleDomainChange()">
+          <option value="">Select your domain</option>
+          <option value="Full Stack">Full Stack</option>
+          <option value="Java">Java</option>
+          <option value="UI & UX">UI & UX</option>
+          <option value="Python">Python</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="text" id="otherDomain" name="otherDomain" placeholder="Specify your domain" style="display:none"/>
+      </div>
+
+      <div class="input-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="Enter 10-digit phone number"/>
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email address"/>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Create Password</label>
+        <input type="password" id="password" name="password" required placeholder="Create a strong password (min 8 chars)"/>
+        <div id="strength-bar">
+          <div id="strength-fill"></div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="department">Department</label>
+        <select id="department" name="department" required>
+          <option value="">Select Department</option>
+          <option value="CSE">CSE</option>
+          <option value="ECE">ECE</option>
+          <option value="IT">IT</option>
+          <option value="MECH">MECH</option>
+          <option value="AIDS">AIDS</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="interests">Interests</label>
+        <textarea id="interests" name="interests" rows="2" placeholder="Share your interests..."></textarea>
+      </div>
+
+      <div class="input-group">
+        <label for="extracurricular">Extracurricular Activities</label>
+        <textarea id="extracurricular" name="extracurricular" rows="2" placeholder="Mention any extracurricular activities..."></textarea>
+      </div>
+
+      <div class="button-group">
+        <button type="submit">Register</button>
+        <button type="reset" class="reset-btn">Reset</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function handleDomainChange() {
+      const select = document.getElementById("domain");
+      const otherInput = document.getElementById("otherDomain");
+      if (select.value === "Other") {
+        otherInput.style.display = "block";
+      } else {
+        otherInput.style.display = "none";
+        otherInput.value = "";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      handleDomainChange();
+    });
+
+    document.getElementById("registration-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Form submitted successfully!");
+    });
+
+    const passwordInput = document.getElementById("password");
+    const strengthFill = document.getElementById("strength-fill");
+
+    passwordInput.addEventListener("input", function () {
+      const value = passwordInput.value;
+      let strength = 0;
+
+      if (value.length >= 8) strength++;
+      if (/[A-Z]/.test(value)) strength++;
+      if (/[0-9]/.test(value)) strength++;
+      if (/[^A-Za-z0-9]/.test(value)) strength++;
+
+      const strengthPercent = (strength / 4) * 100;
+      strengthFill.style.width = strengthPercent + "%";
+
+      if (strength === 0) {
+        strengthFill.style.backgroundColor = "transparent";
+      } else if (strength <= 1) {
+        strengthFill.style.backgroundColor = "#ff4e4e";
+      } else if (strength === 2) {
+        strengthFill.style.backgroundColor = "#ffaa00";
+      } else if (strength >= 3) {
+        strengthFill.style.backgroundColor = "#4caf50";
+      }
+    });
+  </script>
+</body>
+</html>
