@@ -8,11 +8,11 @@
   
   body {
     color: #fff;
-    background: linear-gradient(135deg, #000000, #ff0000, #000000, #003566, #000000);
+    background: linear-gradient(135deg, #000000, #800000, #000000, #003566, #000000);
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
-  }
+}
   
   /* ========== Header ========== */
   .header {
