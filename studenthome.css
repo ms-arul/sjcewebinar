@@ -7,11 +7,14 @@
   }
   
   body {
-    color: #fff;
-    background: linear-gradient(135deg, #000000, #800000, #000000, #003566, #000000);
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
+  color: #eee;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #000000, #4b0000, #000000, #001f3f, #000000);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 2rem;
 }
   
   /* ========== Header ========== */
